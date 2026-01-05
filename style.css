@@ -1,0 +1,7 @@
+:root {
+    --bs-body-bg: #222;
+    --bs-body-color: white;
+    --bs-secondary-color: #CCC;
+    --bs-link-color-rgb: 110, 160, 235;
+    --bs-border-color-translucent: rgba(255, 255, 255, 0.175);
+}
