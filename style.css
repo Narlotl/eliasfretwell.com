@@ -1,7 +1,35 @@
+/* Set colors */
 :root {
     --bs-body-bg: #222;
     --bs-body-color: white;
     --bs-secondary-color: #CCC;
     --bs-link-color-rgb: 110, 160, 235;
     --bs-border-color-translucent: rgba(255, 255, 255, 0.175);
+}
+
+/* Card hover border */
+.card {
+    transition: 0.25s border-color;
+}
+
+.card:hover {
+    --bs-card-border-color: white;
+}
+
+/* Don't show bottom bar if user prefers reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+    /* Bar at bottom of card that expands when card is hovered */
+    .card::after {
+        content: '';
+        height: var(--bs-border-width);
+        background-color: white;
+        width: 0;
+        transition: 0.25s width;
+        display: block;
+        margin: 0 auto var(--bs-card-spacer-y) auto;
+    }
+
+    .card:hover::after{
+        width: calc(100% - 2 * var(--bs-card-spacer-x));
+    }
 }
