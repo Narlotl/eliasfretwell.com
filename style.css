@@ -16,20 +16,52 @@
     --bs-card-border-color: white;
 }
 
-/* Don't show bottom bar if user prefers reduced motion */
+/* Remove link styles for project links */
+.project-icons > a {
+    color: var(--bs-body-color);
+    text-decoration: none;
+}
+
+/* Make project stack images fit with FontAwesome icons */
+.project-icons > img {
+    width: 1em;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+/* Separator bar for icons and description */
+.project-icons {
+    border-bottom: 1px solid var(--bs-border-color-translucent);
+    transition: 0.25s border-color;
+    margin-bottom: var(--bs-card-spacer-y);
+}
+
+/* Animate bar when user doesn't prefer reduced motion */
 @media (prefers-reduced-motion: no-preference) {
-    /* Bar at bottom of card that expands when card is hovered */
-    .card::after {
+    .project-icons::after {
         content: '';
-        height: var(--bs-border-width);
+        height: var(--bs-card-border-width);
         background-color: white;
         width: 0;
         transition: 0.25s width;
         display: block;
-        margin: 0 auto var(--bs-card-spacer-y) auto;
+        margin: calc(var(--bs-card-spacer-y) - 1px) auto 0 auto;
+        position: relative;
+        bottom: calc(-1 * var(--bs-card-border-width));
     }
 
-    .card:hover::after{
-        width: calc(100% - 2 * var(--bs-card-spacer-x));
+    .card:hover .project-icons::after {
+        width: 100%;
+    }
+}
+
+/* Don't animate bar when user prefers reduced motion */
+@media (prefers-reduced-motion) {
+    .project-icons {
+        padding-bottom: var(--bs-card-spacer-y);
+    }
+
+    .card:hover .project-icons {
+        border-color: var(--bs-card-border-color);
     }
 }
